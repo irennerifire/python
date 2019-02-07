@@ -22,6 +22,17 @@ def sys_info ():
     print("Directory: ", os.getcwd())
     print("Current user: ", os.getlogin())
 
+def dupl_delete(file_list, dirname):
+    num_dupl=0
+    print(type(file_list))
+    for i in file_list:
+        fullfilename = os.path.join(dirname, i)
+        if fullfilename.endswith('.dupl'):
+            os.remove(fullfilename)
+            num_dupl+=1
+    return print("The number of files being deleted: ", num_dupl)
+
+
 print("Real program")
 print("Hello!")
 name=input("Имя?")
@@ -56,16 +67,9 @@ while work != 'q':
             i+=1
         elif choice == 6:
             print("Delete the duplicates in the directory")
-            dirname = input("Directory?")
+            dirname = input("Directory?   ")
             file_list = os.listdir(dirname)
-            #i=0
-            #while i < len(file_list):
-            for i in file_list:
-                #fullfilename = dirname + file_list[i]
-                fullfilename=os.path.join(dirname, file_list[i])
-                if fullfilename.endswith('.dupl'):
-                    os.remove(fullfilename)
-                #i+=1
+            dupl_delete(file_list, dirname)
         else:
             pass
     elif work =="N":
